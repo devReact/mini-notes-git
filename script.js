@@ -4,7 +4,8 @@ const noteInput = document.getElementById("noteInput");
 const addNoteBtn = document.getElementById("addNoteBtn");
 const notesList = document.getElementById("notesList");
 
-let notes = [];
+let notes = JSON.parse(localStorage.getItem("notes")) || [];
+displayNotes(notes);
 
 addNoteBtn.addEventListener("click", addNote);
 
@@ -35,6 +36,7 @@ function addNote() {
   };
 
   notes.push(note);
+  saveNotes();
   noteInput.value = "";
 
   displayNotes(notes);
@@ -86,7 +88,7 @@ function deleteNote(id) {
   notes = notes.filter(function (note) {
     return note.id !== id;
   });
-
+  saveNotes();
   displayNotes(notes);
 }
 
@@ -102,6 +104,10 @@ function toggleImportant(id) {
 
     return note;
   });
-
+  saveNotes();
   displayNotes(notes);
+}
+
+function saveNotes() {
+  localStorage.setItem("notes", JSON.stringify(notes));
 }
