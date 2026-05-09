@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Mini Notes</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main class="app">
+      <section class="card">
+        <h1>📝 Mini Notes</h1>
+        <p class="subtitle">Écris, organise et sauvegarde tes notes.</p>
+
+        <div class="note-form">
+          <textarea
+            id="noteInput"
+            placeholder="Écris ta note ici..."
+          ></textarea>
+          <button id="addNoteBtn">Ajouter la note</button>
+        </div>
+
+        <div class="actions">
+          <button id="showAllBtn">Toutes les notes</button>
+          <button id="showImportantBtn">Notes importantes</button>
+        </div>
+
+        <ul id="notesList"></ul>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
