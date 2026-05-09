@@ -1,3 +1,5 @@
+const showAllBtn = document.getElementById("showAllBtn");
+const showImportantBtn = document.getElementById("showImportantBtn");
 const noteInput = document.getElementById("noteInput");
 const addNoteBtn = document.getElementById("addNoteBtn");
 const notesList = document.getElementById("notesList");
@@ -5,6 +7,18 @@ const notesList = document.getElementById("notesList");
 let notes = [];
 
 addNoteBtn.addEventListener("click", addNote);
+
+showAllBtn.addEventListener("click", function () {
+  displayNotes(notes);
+});
+
+showImportantBtn.addEventListener("click", function () {
+  const importantNotes = notes.filter(function (note) {
+    return note.important;
+  });
+
+  displayNotes(importantNotes);
+});
 
 function addNote() {
   const text = noteInput.value.trim();
