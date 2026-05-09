@@ -31,7 +31,7 @@ function displayNotes(notesToDisplay) {
 
   notesToDisplay.forEach(function (note) {
     const li = document.createElement("li");
-    li.className = "note-item";
+    li.className = note.important ? "note-item important" : "note-item";
 
     const p = document.createElement("p");
     p.className = "note-text";
@@ -48,6 +48,18 @@ function displayNotes(notesToDisplay) {
       deleteNote(note.id);
     });
 
+    const importantBtn = document.createElement("button");
+    importantBtn.className = "important-btn";
+    importantBtn.textContent = note.important
+      ? "Retirer important"
+      : "Important";
+
+    importantBtn.addEventListener("click", function () {
+      toggleImportant(note.id);
+    });
+
+    buttonsDiv.appendChild(importantBtn);
+
     buttonsDiv.appendChild(deleteBtn);
 
     li.appendChild(p);
@@ -59,6 +71,22 @@ function displayNotes(notesToDisplay) {
 function deleteNote(id) {
   notes = notes.filter(function (note) {
     return note.id !== id;
+  });
+
+  displayNotes(notes);
+}
+
+function toggleImportant(id) {
+  notes = notes.map(function (note) {
+    if (note.id === id) {
+      return {
+        id: note.id,
+        text: note.text,
+        important: !note.important,
+      };
+    }
+
+    return note;
   });
 
   displayNotes(notes);
